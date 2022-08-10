@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
-    name: {
+    userName: {
         type: String,
         trim: true,
-        required: [true, 'Username cannot be Empty']
+        unique: true,
+        require: [true, 'Username cannot be Empty']
     },
     email: {
         type: String,
@@ -18,6 +19,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         minlength: [8, 'Password must be Greater than 8 letters'],
         required: [true, 'Password cannot be empty'],
+    },
+    name: {
+        type: String,
+        trim: true,
+        required: [true, 'Username cannot be Empty']
     },
     verified: {
         type: Boolean,

@@ -1,7 +1,10 @@
 
 const User = require('../model/user');
+const registerEmailTemplate = require('../utility/registerEmailTemplate');
+const sendEmail = require('../utility/sendEmail');
 
-exports.register = (req, res) => {
+
+exports.register = async (req, res) => {
     const { email, password, name } = req.body;
     if (!email || !password || !name) {
         return res.status(200).json({ message: "Please input required fields" });
@@ -13,6 +16,9 @@ exports.register = (req, res) => {
         else {
             User.create({ name, email, password }, (err, user) => {
                 if (user) {
+                    let link = `${req.protocol}://${req.get("host")}/users/confirm_email`;
+                    const Emailbody = registerEmailTemplate(user.name, link);
+                    sendEmail(user.email, Emailbody);
                     return res.status(200).json({ message: "Sucessfully Created" });
                 }
                 else {
@@ -29,17 +35,17 @@ exports.updateNumberOfFollowers = (req, res) => {
         if (err) {
             return res.status(200).json({ message: "The system error. Please try again" });
         }
-       return res.status(200).json({ id });
+        return res.status(200).json({ id });
     })
 }
 
 exports.updateNumberOfPosts = (req, res) => {
     const { numberOfPosts, id } = req.body;
-    User.updateOne({ _id: id }, { numberOfPosts: numberOfPosts }, (err,updatedUser) => {
+    User.updateOne({ _id: id }, { numberOfPosts: numberOfPosts }, (err, updatedUser) => {
         if (err) {
             return res.status(200).json({ message: "The system error. Please try again" });
         }
-       return res.status(200).json({ id });
+        return res.status(200).json({ id });
     })
 }
 
