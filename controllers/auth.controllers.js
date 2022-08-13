@@ -1,29 +1,29 @@
 const jwt = require('jsonwebtoken');
 const User = require('../model/user');
-const login = (req, res) => {
-    const { email, password } = req.body;
-    if (!email || !password) {
-        return res.status(200).json({ message: "Your username or password is not correct" });
+const {createError} =require('../utility/createError');
+exports.login =async(req, res,next) => {
+    const { credential, password } = req.body;
+    if (!credential || !password) {
+        return next(createError(401, "Your username or password is not correct"));
     }
-    User.findOne(email, (err, user) => {
-        if (user == NULL) {
-            return res.status(400).send({ message: "User not found." });
+
+    User.findOne({ $or: [{ email: credential }, { userName: credential }] }, (err, user) => {
+        if (!user) {
+            return next(createError(401, "User not found."));
         }
         else {
-            if (user.comparePassword(password)) {
-                const token = jwt.sign({ id: user._id }, secret);
+            if (user.comparePassword(password) && user.verified) {
+                const token = jwt.sign({ id: user._id }, process.env.SECRET);
+                res.cookie('token', token, { httpOnly: true });
                 return res.status(201).send({
-                    message: "User Logged In", token, name: user.name
+                    message: "User Logged In", token, name: user.name,
                 })
             }
             else {
-                return res.status(400).send({
-                    message: "Wrong Password"
-                });
+                return next(createError(401, "Wrong Credential"));
             }
         }
 
     })
 }
 
-module.exports = login;
