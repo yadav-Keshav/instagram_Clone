@@ -12,8 +12,7 @@
 <img src="https://raw.githubusercontent.com/nodemailer/nodemailer/master/assets/nm_logo_200x136.png" alt="nodeMailer" width="40" background="black" />
 </p>
 
-<p> Cloud Storage :</p>
-<img src="https://camo.githubusercontent.com/3cc8eb3e3705250f3d4e19adcb36c55563d37cb19e8fc0792a0fc07a4e6e2e91/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f416d617a6f6e5f4157532d4646393930303f7374796c653d666f722d7468652d6261646765266c6f676f3d616d617a6f6e617773266c6f676f436f6c6f723d7768697465" alt="My cool logo"/>
+
 
 # Features
 * Login/Signup User Account
