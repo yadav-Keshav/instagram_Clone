@@ -1,3 +1,265 @@
-a{
-  color: black !important;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+i {
+  background-color: transparent;
+
+  color: black;
+}
+
+/* navbar styling */
+.nav-wrapper {
+  position: sticky;
+  top: 0px;
+}
+
+.brand-logo {
+  font-size: 32px !important;
+  text-transform: capitalize !important;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 200px;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 50px;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.nav-wrapper {
+  padding: 0px 20px;
+  background-color: #24292f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-wrapper ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-wrapper ul li {
+  margin: 10px;
+}
+
+.nav-wrapper ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.profile {
+  display: block;
+  width: 30px;
+  height: 30px !important;
+}
+
+.profile img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.left {
+  display: none !important;
+}
+
+
+.home {
+  display: contents;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Post card */
+.post-screen-container {
+  max-width: 500px;
+  min-width: 360px;
+  width: 100%;
+  margin: auto;
+  margin-top: 15px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.post-wrapper {
+  max-width: 500px;
+  min-width: 360px;
+  width: 100%;
+  margin: auto;
+  margin-top: 15px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.comment-wrapper {
+  max-width: 500px;
+  min-width: 360px;
+  width: 100%;
+  margin: auto;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.top ul li {
+  margin: 10px;
+}
+
+.post-content {
+  width: 100%;
+}
+
+.post-content img {
+  width: 100%;
+}
+
+.post-reation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-reation ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-size: 25px;
+}
+
+.post-reation ul li {
+  margin: 10px;
+}
+
+.post-comment {
+  margin-top: 10px;
+  padding: 0px 10px;
+  border-top: 1px solid gainsboro;
+}
+
+.post-comment ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.post-comment ul li {
+  margin: 10px;
+}
+
+.post-comment ul li:nth-child(2) {
+  width: 80%;
+}
+
+.post-comment ul li input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.post-comment ul li button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Create post screen */
+.create-form-wrapper,.register-screen {
+  width: 360px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  margin: auto;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+.create-form-wrapper input,.register-screen input {
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 10px;
+  outline: none;
+}
+
+.create-form-wrapper input[type='submit'] ,.register-screen input[type='submit']{
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+}
+/* 
+.register-screen {
+  width: 350px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  margin: auto;
+  margin-top: 50px;
+  padding: 20px;
+} */
+
+@media only screen and (max-width: 600px) {
+  .left {
+    display: block !important;
+  }
+
+  .right {
+    display: none !important;
+  }
 }
