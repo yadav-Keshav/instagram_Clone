@@ -1,12 +1,14 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import dotenv from 'dotenv';
 import './App.css';
 import Navbar from './components/navBar';
-import CreatePostScreen from './screen/createPstScreen';
+import CreatePostScreen from './screen/createPostScreen';
 import HomeScreen from './screen/homeScreen';
 import LoginScreen from './screen/loginScreen';
 import Postscreen from './screen/postScreen';
 import RegisterScreen from './screen/registerScreen';
+dotenv.config();
 function App() {
   return (
     <div className="App">

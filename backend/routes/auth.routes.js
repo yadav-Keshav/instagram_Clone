@@ -3,7 +3,7 @@ const { login, register, verifyEmail, forgotPassword, resetPassword } = require(
 
 const authRouter = express.Router();
 authRouter.post("/login", login);
-authRouter.post("/create", register);
+authRouter.post("/register", register);
 authRouter.get("/confirm_email/:token", verifyEmail);
 authRouter.post("/forgot-password", forgotPassword);
 authRouter.post("/reset-password", resetPassword);

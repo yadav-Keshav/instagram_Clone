@@ -2,26 +2,27 @@ const User = require('../model/user');
 const sendEmail = require('../utility/sendEmail');
 const jwt = require('jsonwebtoken');
 const createToken = require('../utility/createToken');
-const {registerEmailTemplate,forgotEmailTemplate} =require('../utility/createToken');
+const { registerEmailTemplate, forgotEmailTemplate } = require('../utility/createToken');
 const { createError } = require('../utility/createError');
 exports.login = async (req, res, next) => {
-    const { credential, password } = req.body;
-    if (!credential || !password) {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
         return next(createError(401, "Your username or password is not correct"));
     }
 
-    User.findOne({ $or: [{ email: credential }, { userName: credential }] }, (err, user) => {
+    User.findOne({ email }, (err, user) => {
         if (!user) {
             return next(createError(401, "User not found."));
         }
         else {
             user.comparePassword(password, (err, isMatch) => {
-                if (err) {
+                if (!isMatch) {
                     return next(createError(401, "Wrong Credential"));
                 }
                 const token = jwt.sign({ id: user._id }, process.env.SECRET);
                 return res.status(201).send({
-                    message: "User Logged In", token, name: user.name, email: user.email, pic: user.pic, userName: user.userName
+                    message: "User Logged In", name: user.name, email: user.email, pic: user.pic,token
                 })
             })
         }
@@ -32,22 +33,22 @@ exports.login = async (req, res, next) => {
 
 
 exports.register = async (req, res, next) => {
-    const { email, userName, password, name } = req.body;
-    if (!email || !password || !name || !userName) {
+    const { email, password, name } = req.body;
+    if (!email || !password || !name) {
         return next(createError(401, "Please input required fields"));
 
     }
-    User.findOne({ $or: [{ email }, { userName }] }, (err, user) => {
+    User.findOne({ email }, (err, user) => {
         if (user) {
             return next(createError(401, 'User already register'));
         }
         else {
             const token = createToken();
-            User.create({ name, email, userName, password, token }, (err, user) => {
+            User.create({ name, email, password, token }, (err, user) => {
                 if (user) {
-                    let link = `${req.protocol}://${req.get("host")}/users/confirm_email/${token}`;
-                    const Emailbody = registerEmailTemplate(user.name, link);
-                    sendEmail(user.email, Emailbody);
+                    // let link = `${req.protocol}://${req.get("host")}/users/confirm_email/${token}`;
+                    // const Emailbody = registerEmailTemplate(user.name, link);
+                    // sendEmail(user.email, Emailbody);
                     return res.status(200).json({ message: "Sucessfully Created" });
                 }
                 else {

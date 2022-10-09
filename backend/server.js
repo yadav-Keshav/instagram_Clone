@@ -10,7 +10,7 @@ process.on('uncaughtException', (err) => {
 
 
 //Connecting to Database
-// connectDB();
+connectDB();
 
 if (process.env.NODE_ENV == "production") {
     app.use(express.static('client/build'))

@@ -239,6 +239,13 @@ form.example::after {
   background-color: green;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+.sucess{
+  color: green;
+}
+.error{
+  color: red;
 }
 /* 
 .register-screen {

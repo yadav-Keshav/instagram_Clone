@@ -3,11 +3,9 @@ const { ObjectId } = mongoose.Schema.Types
 const postSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
     },
     body: {
         type: String,
-        required: true
     },
     photo: {
         type: String,
@@ -19,9 +17,16 @@ const postSchema = new mongoose.Schema({
         postedBy: { type: ObjectId, ref: "User" }
     }],
     postedBy: {
-        type: ObjectId,
-        ref: "User"
+        id: {
+            type: ObjectId,
+            ref: "User"
+        },
+        name: {
+            type: String
+        },
+
+
     }
 }, { timestamps: true })
 
-exports.default = mongoose.model("Post", postSchema);
+module.exports = mongoose.model("Post", postSchema);

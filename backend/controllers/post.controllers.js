@@ -27,17 +27,14 @@ exports.getSubPosts = (req, res, next) => {
 }
 
 exports.createPost = (req, res, next) => {
-    const { title, body, pic } = req.body
-    if (!title || !body || !pic) {
+    const { photo } = req.body
+    if (!photo) {
         return res.status(422).json({ error: "Plase add all the fields" })
     }
-    req.user.password = undefined
     const post = new Post({
-        title,
-        body,
-        photo: pic,
-        postedBy: req.user
-    })
+        photo,
+        postedBy: { id: req.user._id, name: req.user.name }
+    });
     post.save().then(result => {
         res.status(200).json({ post: result })
     })

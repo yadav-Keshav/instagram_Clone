@@ -11,9 +11,9 @@ exports.verifyToken = (req, res, next) => {
     if (err) {
       return next(createError(403, "Token is not valid!"));
     }
-
-    const { _id } = payload
-    User.findById(_id).then(userdata => {
+    
+    const { id } = payload
+    User.findById(id).then(userdata => {
       req.user = userdata
       next()
     })

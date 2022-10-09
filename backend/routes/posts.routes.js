@@ -6,7 +6,7 @@ const postRouter = express.Router();
 
 postRouter.get("/allPost", verifyToken, allPosts);
 postRouter.get("/subPosts", verifyToken, getSubPosts);
-postRouter.post("/createPost", verifyToken, createPost);
+postRouter.post("/create-post", verifyToken, createPost);
 postRouter.get("/myPost", verifyToken, myPost);
 postRouter.put("/like", verifyToken, likePost);
 postRouter.put("/unlike", verifyToken, unlikePost);
