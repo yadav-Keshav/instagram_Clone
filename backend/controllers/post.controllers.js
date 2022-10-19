@@ -1,23 +1,12 @@
 const Post = require('../model/post');
 const createError = require('../utility/createError');
-exports.allPosts = (req, res, next) => {
-    Post.find()
-        .populate("postedBy", "_id name")
-        .populate("comments.postedBy", "_id name")
-        .sort('-createdAt')
-        .then((posts) => {
-            return res.status(200).json({ posts })
-        }).catch(err => {
-            return next(createError(401, err.message));
-        })
-}
 
 exports.getSubPosts = (req, res, next) => {
     // if postedBy in following
     Post.find({ postedBy: { $in: req.user.following } })
-        .populate("postedBy", "_id name")
-        .populate("comments.postedBy", "_id name")
-        .sort('-createdAt')
+        .populate("postedBy", "_id name pic")
+        .populate("comments.postedBy", "_id name pic")
+        .sort('createdAt')
         .then(posts => {
             res.status(200).json({ posts })
         })

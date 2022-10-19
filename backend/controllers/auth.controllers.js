@@ -22,16 +22,13 @@ exports.login = async (req, res, next) => {
                 }
                 const token = jwt.sign({ id: user._id }, process.env.SECRET);
                 return res.status(201).send({
-                    message: "User Logged In", name: user.name, email: user.email, pic: user.pic,token
+                    message: "User Logged In", name: user.name,pic:user.pic, email: user.email,token
                 })
             })
         }
 
     })
 }
-
-
-
 exports.register = async (req, res, next) => {
     const { email, password, name } = req.body;
     if (!email || !password || !name) {
@@ -58,6 +55,8 @@ exports.register = async (req, res, next) => {
         }
     })
 }
+
+//Verify email
 exports.verifyEmail = (req, res, next) => {
     const token = req.params.token;
     if (!token) {
@@ -80,6 +79,8 @@ exports.verifyEmail = (req, res, next) => {
         }
     })
 }
+
+//Get link to set new password
 exports.forgotPassword = (req, res, next) => {
     const email = req.body.email;
     const token = req.params.token;
@@ -99,7 +100,7 @@ exports.forgotPassword = (req, res, next) => {
     })
 }
 
-
+//Set new password
 exports.resetPassword = (req, res, next) => {
     const newPassword = req.body.password;
     const sentToken = req.params.token;

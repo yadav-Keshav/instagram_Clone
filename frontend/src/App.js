@@ -8,6 +8,7 @@ import HomeScreen from './screen/homeScreen';
 import LoginScreen from './screen/loginScreen';
 import Postscreen from './screen/postScreen';
 import RegisterScreen from './screen/registerScreen';
+import ProfileScreen from './screen/profileScreen';
 dotenv.config();
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/post" element={<Postscreen />} />
           <Route exact path='/login' element={<LoginScreen />} />
           <Route exact path="/register" element={<RegisterScreen />} />
+          <Route exact path="/profile" element={<ProfileScreen />} />
         </Routes>
       </BrowserRouter>
     </div>

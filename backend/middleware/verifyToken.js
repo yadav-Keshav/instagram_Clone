@@ -6,12 +6,12 @@ exports.verifyToken = (req, res, next) => {
   if (!authorization) {
     return next(createError(401, "You are not authenticated!"));
   }
-  const token = authorization.replace("Bearer ", "")
+  const token = authorization;
   jwt.verify(token, SECRET, (err, payload) => {
     if (err) {
       return next(createError(403, "Token is not valid!"));
     }
-    
+
     const { id } = payload
     User.findById(id).then(userdata => {
       req.user = userdata

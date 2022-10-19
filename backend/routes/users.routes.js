@@ -3,11 +3,12 @@ const { searchUser, getUserById, follow, unfollow, updatepic } = require('../con
 const { verifyToken } = require('../middleware/verifyToken')
 
 const userRouter = express.Router();
-userRouter.get("/:id", verifyToken, getUserById);
-userRouter.put("/follow", verifyToken, follow);
-userRouter.put("/unfollow", verifyToken, unfollow);
-userRouter.put("updatepic", verifyToken, updatepic);
-userRouter.get("/search-users", verifyToken, searchUser);
+userRouter.get("/:id", verifyToken, getUserById);        //get user by id
+userRouter.get("/getFollower/:id")
+userRouter.put("/follow/:id", verifyToken, follow);      //follow user
+userRouter.put("/unfollow/:id", verifyToken, unfollow);  //unfollow user
+userRouter.put("/updatepic", verifyToken, updatepic);     //update profile pic
+userRouter.get("/search-users", verifyToken, searchUser);//serach user by name
 
 
 
