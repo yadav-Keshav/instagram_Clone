@@ -8,7 +8,7 @@ export const uploadImageAction = (image, title, body) => async (dispatch, getSta
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                "authorization": `Bearer ${token}`
+                "authorization": `${token}`
             }
         }
         const formData = new FormData();

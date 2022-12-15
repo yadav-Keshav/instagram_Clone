@@ -25,9 +25,10 @@ app.get('*', (req, res) => {
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";
+  console.log(errorMessage);
   return res.status(errorStatus).json({
     status: errorStatus,
-    err: errorMessage,
+    message: errorMessage,
   });
 });
 

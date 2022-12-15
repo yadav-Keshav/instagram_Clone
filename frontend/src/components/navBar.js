@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{useState} from 'react';
 import downlod from '../../src/download.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/action/authAction';
 export default function Navbar() {
+    const [query,setQuery]=useState();
     const dispatch = useDispatch();
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
@@ -19,7 +20,7 @@ export default function Navbar() {
                 <li><a href='/' className='brand-logo'>Instagram</a></li>
                 <li>
                     <form className="example" >
-                        <input type="text" placeholder="Search.." name="search" />
+                        <input type="text" placeholder="Search.." name="search" onChange={(e)=>setQuery(e.target.value)}/>
                         <button type="submit"><i className="fa fa-search"></i></button>
                     </form>
                 </li>

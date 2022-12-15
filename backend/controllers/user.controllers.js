@@ -66,7 +66,7 @@ exports.getFollower = (req, res, next) => {
     User.findById(id, (err, user) => {
         if (err) return next(createError(401, "You are not following"))
     })
-    User.find({ _id:})
+    // User.find({ _id:})
 }
 
 exports.getFollowing = (req, res, next) => {

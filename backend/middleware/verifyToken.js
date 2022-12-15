@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const { SECRET } = require('../config/config');
 const User = require('../model/user');
+const {createError}=require('../utility/createError');
 exports.verifyToken = (req, res, next) => {
   const { authorization } = req.headers
   if (!authorization) {

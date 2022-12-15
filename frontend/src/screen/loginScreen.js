@@ -10,7 +10,7 @@ export default function LoginScreen() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userLogin = useSelector(state => state.userLogin);
-    const { userInfo, error, loading } = userLogin;
+    const { userInfo, message, loading } = userLogin;
     const loginHandler = (e) => {
         e.preventDefault();
         dispatch(login(email, password));
@@ -26,7 +26,7 @@ export default function LoginScreen() {
     return (
         <div className='register-screen'>
             <h2>Login</h2>
-            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {message && <ErrorMessage variant="error">{message}</ErrorMessage>}
             <form>
                 <input type='text' placeholder='Email' required onChange={(e) => setEmail(e.target.value)} />
                 <input type='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)} />

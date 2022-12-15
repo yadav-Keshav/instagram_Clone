@@ -1,5 +1,5 @@
 const Post = require('../model/post');
-const createError = require('../utility/createError');
+const {createError} = require('../utility/createError');
 
 exports.getSubPosts = (req, res, next) => {
     // if postedBy in following
@@ -81,7 +81,7 @@ exports.comment = (req, res, next) => {
     }, {
         new: true
     })
-        .populate("comments.postedBy", "_id name")
+        .populate("comments.postedBy", "_id name pic")
         .populate("postedBy", "_id name")
         .exec((err, result) => {
             if (err) {
